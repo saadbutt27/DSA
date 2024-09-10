@@ -9,11 +9,11 @@ int twosComplement(int binNum) {
     int onesComplement = !binNum;
 
     int power = 1;
-    int num2 = 1
+    int num2 = 1;
     while (binNum > 0) { // 1100 + 1
         int remainder = binNum % 2; // 1
         binNum = binNum / 2; // 0
-        int num2R = num2 % 2 // 0
+        int num2R = num2 % 2; // 0
         num2 /= 2; // 0
 
         if (num2R == 1) {
@@ -41,7 +41,7 @@ int decimalToBinary(int decNum) {
     int isNegative = false;
     if (decNum < 0) {
         !isNegative;
-        decNum *= -1
+        decNum *= -1;
     } 
 
     int binaryNum = 0;
