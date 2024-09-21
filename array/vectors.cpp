@@ -186,8 +186,22 @@ int majorityElement(vector<int> nums) {
     else return -1;
 }
 
+int maxProfit(vector<int>& prices) {
+    // O(n)
+    int mp = 0, bestBuy = prices[0];
+
+    for (int i=1; i<prices.size(); i++) {
+        if (prices[i] > bestBuy) {
+            mp = max(mp, prices[i] - bestBuy);
+        }
+        bestBuy = min(bestBuy, prices[i]);
+    } 
+
+    return mp;
+}
+
 int main() {
-    vector<int> nums = {1, 2, 3};
+    vector<int> nums = {7, 1, 5, 3, 6, 4};
 
     // cout << singleNumber(nums) << endl;
     // cout << linearSearch(nums, 2) << endl;
@@ -208,7 +222,9 @@ int main() {
     // vector<int> ans = pairSum(nums, 26);
     // cout << ans[0] << ", " << ans[1] <<  endl;
 
-    cout << majorityElement(nums) << endl;
+    // cout << majorityElement(nums) << endl;
+
+    cout << maxProfit(nums) << endl;
 
     return 0;
 }

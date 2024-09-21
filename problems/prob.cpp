@@ -43,9 +43,37 @@ int reverseNumber(int num) {
     return reversed;
 }
 
+double myPow(double x, int n) {
+    // Binary Exponentiation - O(logn)
+    if (n == 0) return 1.0;
+    if (x == 0) return 0.0;
+    if (x == 1) return 1.0;
+    if (x == -1 && n%2 == 0) return 1.0;
+    if (x == -1 && n%2 != 0) return -1.0;
+
+    long binForm = n;
+
+    if (n < 0) {
+        x = 1/x;
+        binForm = -binForm;
+    }
+
+    double ans = 1;
+
+    while (binForm > 0) {
+        if (binForm % 2 == 1) {
+            ans *= x;
+        }
+        x *= x; // x^2
+        binForm /= 2;
+    }  
+
+    return ans;      
+}
+
 int main() {
-    for(int i=0; i<=70; i++)
-        cout << i << ": " << powerOfTwoBitwise(i) << " 2^" << i << endl;
+    // for(int i=0; i<=70; i++)
+    //     cout << i << ": " << powerOfTwoBitwise(i) << " 2^" << i << endl;
 
     // cout << powerOfTwoBitwise(32) << endl;
     // cout << powerOfTwoBitwise(12) << endl;
@@ -57,5 +85,7 @@ int main() {
     // cout << (4 >> 1) << endl; 
     // cout << (2 >> 1) << endl; 
     // cout << (1 >> 1) << endl; 
+
+    cout << myPow(0, 5) << endl;
     return 0;
 }
