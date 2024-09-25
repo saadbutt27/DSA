@@ -231,6 +231,61 @@ int maxArea(vector<int>& height) {
     return maxWater;
 }
 
+vector<int> productExceptSelf(vector<int>& nums) {
+    // 238. Product of array except itself
+    int n = nums.size();
+    vector<int> ans(n, 1);
+
+    // BRUTE FORCE APPROACH - O(n^@)
+    // for(int i=0; i<nums.size(); i++){
+    //     for (int j=0; j<nums.size(); j++) {
+    //         if (i != j) {
+    //             ans[i] *= nums[j];
+    //         }
+    //     }
+    // }
+
+    // OPTIMAL APPROACH - TC: O(n), SC: O(n)
+    // prefix: left product, siffix: right product
+    // for any index i in an array, prefic is the product of left-side element of the i-th element and suffix is the 
+    // right-side product of the i-th number
+
+    // Prefix of all elements - O(n)
+    // vector<int> prefix(n, 1);
+    // for (int i=1; i<n; i++) {
+    //     prefix[i] = prefix[i-1] * nums[i-1];
+    // }
+    // // Suffix of all elements - O(n)
+    // vector<int> suffix(n, 1);
+    // for (int i=n-2; i>=0; i--) {
+    //     suffix[i] = suffix[i+1] * nums[i+1];
+    // }
+
+    // // answer claculation - O(n)
+    // for (int i=0; i<n; i++) {
+    //     ans[i] = prefix[i] * suffix[i];
+    // }
+
+    // OPTIMAL APPROACH - TC: O(n), SC: O(1)
+    // prefix: left product, siffix: right product
+    // for any index i in an array, prefix is the product of left-side element of the i-th element and suffix is the 
+    // right-side product of the i-th number
+    // In this approach we won't store prefix or suffix, we will use it directly in our calculations.
+
+    // Prefix of all elements - O(n)
+    for (int i=1; i<n; i++) {
+        ans[i] = ans[i-1] * nums[i-1];
+    }
+    // Suffix of all elements - O(n)
+    int suffix = 1;
+    for (int i=n-2; i>=0; i--) {
+        suffix *= nums[i+1];
+        ans[i] *= suffix;
+    }
+
+    return ans;
+}
+
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
@@ -258,8 +313,16 @@ int main() {
 
     // cout << maxProfit(nums) << endl;
 
-    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    cout << maxArea(height) << endl;
+    // vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    // cout << maxArea(height) << endl;
+
+    vector<int> nums = {1, 2, 3, 4};
+    vector<int> ans = productExceptSelf(nums);
+    for (int i=0; i<ans.size(); i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
+    
 
     return 0;
 }
