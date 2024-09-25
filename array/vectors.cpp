@@ -200,14 +200,46 @@ int maxProfit(vector<int>& prices) {
     return mp;
 }
 
+int maxArea(vector<int>& height) {
+    // 11. Container with most water
+    int maxWater = 0;
+    // BRUTE FORCE APPROACH - O(n^2)
+    // for (int i=0; i<height.size(); i++) {
+    //     for (int j=i+1; j<height.size(); j++) {
+    //         int w = j-i;
+    //         int ht = min(height[i], height[j]);
+    //         int currentWater = w * ht;
+    //         maxWater = max(maxWater, currentWater);
+    //     }
+    // }
+
+    // TWO POINTER APPROACH - O(n)
+    int left = 0, right = height.size()-1;
+    while (left < right) {
+            int w = right-left;
+            int ht = min(height[left], height[right]);
+            int currentWater = w * ht;
+            maxWater = max(maxWater, currentWater);
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+    }
+
+    return maxWater;
+}
+
 int main() {
-    vector<int> nums = {7, 1, 5, 3, 6, 4};
+    // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
     // cout << singleNumber(nums) << endl;
     // cout << linearSearch(nums, 2) << endl;
 
     // for (int x: nums){
     //     cout << x << " ";
+    // }
     // }
     // cout << endl;
 
@@ -224,7 +256,10 @@ int main() {
 
     // cout << majorityElement(nums) << endl;
 
-    cout << maxProfit(nums) << endl;
+    // cout << maxProfit(nums) << endl;
+
+    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    cout << maxArea(height) << endl;
 
     return 0;
 }
