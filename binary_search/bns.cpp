@@ -82,6 +82,24 @@ int search(vector<int>& nums, int target) {
     return -1;
 }
 
+int peakIndexInMountainArray(vector<int>& arr) {
+    // TC = O(logn)
+    int start = 1, end = arr.size()-2;
+
+    while (start <= end) {
+        int mid = start + (end - start) / 2;
+        if (arr[mid-1] < arr[mid] && arr[mid] > arr[mid+1]) {
+            return mid;
+        } else if (arr[mid-1] < arr[mid]) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
 int main() {
 
     // vector<int> arr = {15, 24, 84, 100, 123};
@@ -90,8 +108,11 @@ int main() {
     // cout << recursiveBinarySearch(arr, 0, arr.size()-1, 84) << endl;
     // cout << binarySearch(arr, 15) << endl;
 
-    vector<int> nums = {3, 4, 5, 6, 7, 0, 1, 2};
-    cout << search(nums, 0) << endl;
+    // vector<int> nums = {3, 4, 5, 6, 7, 0, 1, 2};
+    // cout << search(nums, 0) << endl;
+
+    vector<int> nums = {0, 3, 8, 9, 5, 2};
+    cout << peakIndexInMountainArray(nums) << endl;
 
     return 0;
 }
