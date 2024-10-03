@@ -100,6 +100,43 @@ int peakIndexInMountainArray(vector<int>& arr) {
     return -1;
 }
 
+int singleNonDuplicate(vector<int>& nums) {
+    int n = nums.size();
+    if(n == 1) return nums[0];
+
+    int start = 0, end = n-1;
+
+    while (start <= end) {
+        int mid = start + (end - start) / 2;
+
+        // Corner cases
+        if(mid == 0 && nums[0] != nums[1]) return nums[mid];
+        if(mid == n-1 && nums[n-1] != nums[n-2]) return nums[mid];
+
+        if (nums[mid] != nums[mid-1] && nums[mid] != nums[mid+1]) return nums[mid];
+
+        if (mid % 2 == 0) {
+            if (nums[mid] == nums[mid-1]) {
+                // Left half has duplicates and a unique element
+                end = mid - 1;
+            } else {
+                // Right half has duplicates and a unique element
+                start = mid + 1;
+            }
+        } else {
+            if (nums[mid] == nums[mid-1]) {
+                // Left half has duplicates and a unique element
+                start = mid + 1;
+            } else {
+                // Right half has duplicates and a unique element
+                end = mid - 1;
+            }
+        }
+    }
+
+    return -1; 
+}
+
 int main() {
 
     // vector<int> arr = {15, 24, 84, 100, 123};
@@ -111,8 +148,11 @@ int main() {
     // vector<int> nums = {3, 4, 5, 6, 7, 0, 1, 2};
     // cout << search(nums, 0) << endl;
 
-    vector<int> nums = {0, 3, 8, 9, 5, 2};
-    cout << peakIndexInMountainArray(nums) << endl;
+    // vector<int> nums = {0, 3, 8, 9, 5, 2};
+    // cout << peakIndexInMountainArray(nums) << endl;
+
+    vector<int> nums = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+    cout << singleNonDuplicate(nums) << endl;
 
     return 0;
 }
