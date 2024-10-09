@@ -203,6 +203,63 @@ int allocateBooks (vector<int>& pages, int m) {
     return ans;
 }
 
+
+bool isPossible (vector<int>arr, int n, int m, int maxAllowedTime) {
+    int painters = 1, time = 0;
+    // O(n)
+    for (int i=0; i<n; i++) {
+
+        if (arr[i] > maxAllowedTime) return false;
+
+        if (time + arr[i] <= maxAllowedTime) {
+            time += arr[i];
+        } else {
+            painters++;
+            time = arr[i];
+        }
+    }
+
+    return painters <= m;
+}
+int minTimeToPaint(vector<int>& boards, int m) {
+    // N boards of length, in an array, and M painters
+    // each painter takes 1 unit of time to paint 1 unit of the board
+    // find minimum time to paint all the boards, such thaht painter will only paint contiguos section of boards
+
+    // n boards, each has A[i] number of units
+    // allocate boards to m number of painters so that the max number of units allocated to a painter is a minimum
+
+    // Find min and max time to paint the boards, so we have a range in ehich the time will be to paint all the boards
+    // the max time will be when one painter will paint all the boards (sum of all board length)
+    // the min time will be when n painters will paint n boards, the time taken will be the boards with max length
+    // min = max(boards_length), max = sum(boards_length)
+
+    int n = boards.size();
+    if (m > n) return -1;
+
+    int sum = 0, maxVal = INT_MIN;
+    for (int i=0; i<n; i++) { // O(n)
+        sum += boards[i];
+        maxVal = max(maxVal, boards[i]);
+    }
+
+    int start = maxVal, end = sum, ans = -1;
+
+    while (start <= end) { // log(sum) * log(n) => o(n * log(sum))
+        int mid = start + (end - start) / 2;
+
+        if (isPossible(boards, n, m, mid)) {
+            ans = mid;
+            end = mid - 1;
+        } else {
+            start = mid + 1; 
+        }
+    }
+
+    return ans;
+}
+
+
 int main() {
 
     // vector<int> arr = {15, 24, 84, 100, 123};
@@ -220,8 +277,11 @@ int main() {
     // vector<int> nums = {1, 1, 2, 3, 3, 4, 4, 8, 8};
     // cout << singleNonDuplicate(nums) << endl;
 
-    vector<int> pages = {15, 17, 20};
-    cout << allocateBooks(pages, 2) << endl;
+    // vector<int> pages = {15, 17, 20};
+    // cout << allocateBooks(pages, 2) << endl;
+
+    vector<int> boards = {40, 30, 10, 20};
+    cout << minTimeToPaint(boards, 2) << endl;
 
     return 0;
 }
