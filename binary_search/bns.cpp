@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
+#include <algorithm>
 
 int binarySearch(vector<int>& arr, int target) {
     // TC = O(logn)
@@ -259,6 +260,128 @@ int minTimeToPaint(vector<int>& boards, int m) {
     return ans;
 }
 
+bool isDistancePossible (vector<int>arr, int n, int c, int minAllowedDistance) {
+    int cows = 1, lastStallPos = arr[0];
+    // O(n)
+    for (int i=0; i<n; i++) {
+
+        if (arr[i] - lastStallPos >= minAllowedDistance) {
+            cows++;
+            lastStallPos = arr[i];
+        }
+
+        if (cows == c) return true;
+    }
+
+    return false;
+}
+int getMinDistance(vector<int>& stalls, int c) {
+    sort(stalls.begin(), stalls.end()); // O(n logn)
+
+    int n = stalls.size();
+
+    // int minVal = INT_MAX, maxVal = INT_MIN;
+    // for (int i=0; i<n; i++) {
+    //     minVal = min(minVal, stalls[i]);
+    //     maxVal = max(maxVal, stalls[i]);
+    // }
+
+    int start = 1, end = stalls[n-1] - stalls[0], ans = -1;
+
+    while (start <= end) { // O(n log(range))
+        int mid = start + (end - start) / 2;
+
+        if (isDistancePossible(stalls, n, c, mid)) { // O(n)
+            ans = mid;
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+
+    return ans;
+}
+
+// bool isDistancePossible(vector<int>& position, int n, int m, int minAllowedDistance) {
+//     int balls = 1, lastBasketPosition = position[0];
+
+//     for (int i=0; i<n; i++) {
+//         if (position[i] - lastBasketPosition >= minAllowedDistance) {
+//             balls++;
+//             lastBasketPosition = position[i];
+//         }
+
+//         if (balls == m) return true;
+//     }
+
+//     return false;
+// }
+int maxDistance(vector<int>& position, int m) {
+    sort(position.begin(), position.end());
+
+    int n = position.size();
+
+    int start = 1, end = position[n-1] - position[0], ans = -1;
+
+    while (start <= end) {
+        int mid = start + (end - start) / 2;
+
+        if (isDistancePossible(position, n, m, mid)) {
+            ans = mid;
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+
+    return ans;
+}
+
+vector<int> searchRange(vector<int>& nums, int target) {
+    // TC = O(logn)
+    int n = nums.size();
+    vector<int> ans(2, -1);
+ 
+    int start = 0, end = n-1;
+    while(start <= end) {
+        int mid = start + (end - start) / 2;
+        
+        if (nums[mid] == target) {
+            if(mid == 0 || nums[mid-1] != target) {
+                ans[0] = mid;
+                break;
+            } else {
+                end = mid - 1;
+            }
+        } else if (nums[mid] > target) {
+            end = mid - 1; 
+        } else {
+            start = mid + 1;
+        }
+    }
+
+    if (ans[0] == -1) return ans;
+
+    start = 0, end = n-1;
+    while(start <= end) {
+        int mid = start + (end - start) / 2;
+        
+        if (nums[mid] == target) {
+            if(mid == n-1 || nums[mid+1] != target) {
+                ans[1] = mid;
+                break;
+            } else {
+                start = mid + 1;
+            }
+        } else if (nums[mid] > target) {
+            end = mid - 1; 
+        } else {
+            start = mid + 1;
+        }
+    }
+    
+    return ans;
+}
 
 int main() {
 
@@ -280,8 +403,15 @@ int main() {
     // vector<int> pages = {15, 17, 20};
     // cout << allocateBooks(pages, 2) << endl;
 
-    vector<int> boards = {40, 30, 10, 20};
-    cout << minTimeToPaint(boards, 2) << endl;
+    // vector<int> boards = {40, 30, 10, 20};
+    // cout << minTimeToPaint(boards, 2) << endl;
 
+    // vector<int> stalls() = {5,4,3,2,1,1000000000};
+    // cout << getMinDistance(stalls, 2) << endl;
+
+    vector<int> nums = {};
+    vector<int> ans = searchRange(nums, 0);
+    cout << ans[0] << ", " << ans[1] << endl;
+    
     return 0;
 }
