@@ -383,6 +383,29 @@ vector<int> searchRange(vector<int>& nums, int target) {
     return ans;
 }
 
+int mySqrt(int x) {
+    if (x < 2) return x;
+    int low = 0, high = x;
+
+    int result = 0;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+        long long midSquared = (long long) mid * mid;  // To avoid overflow
+
+        if (midSquared == x) {
+            return mid;
+        } else if (midSquared < x) {
+            result = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return result;
+}
+
 int main() {
 
     // vector<int> arr = {15, 24, 84, 100, 123};
@@ -409,9 +432,11 @@ int main() {
     // vector<int> stalls() = {5,4,3,2,1,1000000000};
     // cout << getMinDistance(stalls, 2) << endl;
 
-    vector<int> nums = {};
-    vector<int> ans = searchRange(nums, 0);
-    cout << ans[0] << ", " << ans[1] << endl;
+    // vector<int> nums = {};
+    // vector<int> ans = searchRange(nums, 0);
+    // cout << ans[0] << ", " << ans[1] << endl;
+
+    cout << mySqrt(8) << endl;
     
     return 0;
 }
