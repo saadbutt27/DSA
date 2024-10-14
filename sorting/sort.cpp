@@ -118,16 +118,43 @@ void sortColors(vector<int> nums) {
     printVector(nums);
 }
 
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    // TC = O(m+n), SC = O(1)
+    int idx = m + n - 1;
+    int i = m - 1; // -1
+    int j = n - 1; // 0
 
+    while (i >= 0 && j >= 0) { // O(m+n)
+        if (nums1[i] >= nums2[j]) {
+            nums1[idx--] = nums1[i--];
+        } else {
+            nums1[idx--] = nums2[j--];
+        }
+        // idx--;
+    }
+
+    while (j >= 0) { // O(m)
+        nums1[idx--] = nums2[j--];
+    }
+}
 
 int main() {
-    vector<int> nums = {2,0,2,1,1,0};
+    vector<int> nums1 = {0};
+    vector<int> nums2 = {1};
     cout << "Unsorted array: ";
-    printVector(nums);
+    printVector(nums1);
 
-    sortColors(nums);
+    merge(nums1, 0, nums2, 1);
     cout << "Sorted array: ";
-    printVector(nums);
+    printVector(nums1);
+
+    // vector<int> nums = {2,0,2,1,1,0};
+    // cout << "Unsorted array: ";
+    // printVector(nums);
+
+    // sortColors(nums);
+    // cout << "Sorted array: ";
+    // printVector(nums);
 
 
     // int arr[] = {5, 4, 12, 8, 4, 8, 2, 7, 2, 4, 5, 10};
