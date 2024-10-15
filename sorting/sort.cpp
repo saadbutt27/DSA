@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
+#include <algorithm>
 
 void bubbleSort(int arr[], int n) {
     // TC: O(n^2)
@@ -138,15 +139,73 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
     }
 }
 
-int main() {
-    vector<int> nums1 = {0};
-    vector<int> nums2 = {1};
-    cout << "Unsorted array: ";
-    printVector(nums1);
+void nextPermutation(vector<int>& nums) {
+    // TC = O(n), SC = O(1)
+    // For a given array, if we traverse backward, there is a pivot element
+    // A pivot element has a characteristic that it is less the first element(backward), which isleeser than its next element 
+    // Find the pivot element => nums[i] < nums[i+1]
+    // Find right most element grater than the pivot element     
+    // Swap(right most elemnt, pivot element)
+    // Reverse the elements after the pivot poistioned element   , pivot+1 to n-1
 
-    merge(nums1, 0, nums2, 1);
-    cout << "Sorted array: ";
-    printVector(nums1);
+    int n = nums.size();
+    int pivot = -1;
+
+    // Find pivot, O(n)
+    for (int i=n-2; i>=0; i--) {
+        if (nums[i] < nums[i+1]) {
+            pivot = i;
+            break;
+        }
+    }
+
+    if (pivot == -1) {
+        // reverse(nums.begin(), nums.end());
+        int i = pivot + 1;
+        int j = n - 1;
+
+        while (i <= j) {
+            swap(nums[i++] , nums[j--]);
+        }
+        return;
+    }
+
+    // Find rightmost element and swap it with pivot, O(n)
+    for (int i=n-1; i>pivot; i--) {
+        if (nums[i] > nums[pivot]) {
+            swap(nums[i], nums[pivot]);
+            break;
+        }
+    }
+
+    // Reversing the elements from (pivot+1 to n-1) using two-pointer approach, O(n)
+    int i = pivot + 1;
+    int j = n - 1;
+
+    while (i <= j) {
+        swap(nums[i++] , nums[j--]);
+    }
+    // reverse(nums.begin() + pivot+1, nums.end());
+
+}
+
+int main() {
+    vector<int> nums = {5, 4, 3, 2, 1};
+    cout << "Array array: ";
+    printVector(nums);
+
+    nextPermutation(nums);
+    cout << "Next permutation array: ";
+    printVector(nums);
+
+    // vector<int> nums1 = {0};
+    // vector<int> nums2 = {1};
+    // cout << "Unsorted array: ";
+    // printVector(nums1);
+
+    // merge(nums1, 0, nums2, 1);
+    // cout << "Sorted array: ";
+    // printVector(nums1);
 
     // vector<int> nums = {2,0,2,1,1,0};
     // cout << "Unsorted array: ";
