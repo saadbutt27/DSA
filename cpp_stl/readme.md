@@ -1,6 +1,6 @@
 # C++ STL (Standard Template Library)
 
-## - Containers
+## Containers
     - Sequential Containers
     * Vector
         - Dynamic: Data is stored as in an array, but it is dynamic, or resizeable. Vectors can increase or decrease their size at runtime.
@@ -133,5 +133,5 @@
             - empty: checks if the priority queue is empty or not
             - size: returns the size of priority queue
 
-## - Algorithms
-## - Functors
+## Algorithms
+## Functors
