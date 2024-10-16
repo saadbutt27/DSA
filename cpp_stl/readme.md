@@ -102,5 +102,19 @@
             - size: returns the size of stack
             - swap: swaps one stack to another stack
 
+    * Queue:
+        - FIFO - First In First Out Structure
+        - Inserts elements from rear/end/last
+        - Deletes elements from front
+        - Initialization/Creation:
+            - queue<datatype> name; => queue<int> q;
+        - Functions:
+            - push, empalce: used to insert element at the rear/end
+            - front: to check which element is at the front of the queue
+            - pop: removes element from front
+            - empty: checks if the queue is empty or not
+            - size: returns the size of queue
+            - swap: swaps one queue to another queue
+
 - Algorithms
 - Functors
