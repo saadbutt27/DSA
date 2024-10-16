@@ -74,5 +74,6 @@
             deque<int> d = {1, 2, 3};
         - Functions:
             - all functions: push_back, push_front, emplace_back, emplace_front, size, erase, clear, begin, end, rbegin, rend, insert, front, back, also exist in deque
+            - capacity function does not exist
 - Algorithms
 - Functors

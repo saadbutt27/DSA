@@ -22,7 +22,7 @@ int main() {
     cout << endl;
 
     cout << "Size: " << dq.size() << endl;
-    // cout << "Capacity: " << dq. << endl;
+    // cout << "Capacity: " << dq.capacity() << endl; // does not exist
 
     cout << dq[3] << endl;
     return 0;
