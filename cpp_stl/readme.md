@@ -15,8 +15,8 @@
             - * TC = O(1)
             - size() - returns the size of the vector (number of elements stored in the vector)
             - capacity() - returns the capacity of the vector (number of elements a vector can currently hold)
-            - push_back(data to be stored) - insert element at the end (data is already of the same type as of vector??)
-            - emplace_back(data to be stored) - insert element at the end (create inplace / emplace objects)
+            - push_back(data to be stored) - insert element at the end (assumes that data is already of the same type as of      vector)
+            - emplace_back(data to be stored) - insert element at the end (create inplace objects of the required datatype)
             - pop_back() - delete element at the end
             - at(index) or [index] - returns data at the required location/position/index
             - front() - returns the first/front element
@@ -61,8 +61,8 @@
         - Functions:
             - push_back: push elements at back 
             - push_front: push elements at front
-            - emplace_back: push elements (create implace/inplace object) at back 
-            - emplace_front: push elements(create implace/inplace object) at front
+            - emplace_back: push elements (create inplace object) at back 
+            - emplace_front: push elements(create inplace object) at front
             - all other functions: size, erase, clear, begin, end, rbegin, rend, insert, fron, back, also exist in list
             - capacity function does not exist
 
