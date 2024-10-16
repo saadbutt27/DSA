@@ -158,7 +158,24 @@
                 - Stores data in a random order
                 - TC = O(1) for insert, erase, count, rarely it is O(n)
 
+    * Set:
+        - Similar to map, store unique values, in particular sorted order
+        - if we try to insert duplicate data into a set, it will be stored only once, sets has unique data
+        - Set also uses a self balancing tree internally
+        - Initialization/Creation:
+            ```set<datatype> name;``` => ```set<int> s;```
+        - Functions:
+            - insert, emplace: to insert data in a set
+            - count, erase, find, size, empty works same as map
+            - TC = O(logn) for insert, erase, count
+            - lower_bound: we pass any value as a parameter in this function, it'll return an iteartor to that value if it exists in the set else it will return just greater value's iterator than the required one. It basically sets a condition that minimum value is required or just next greater of it, and if no value exits then it returns end iterator
+            should not be less than key(paramter)
+            - upper_bound: we pass any value as a parameter in this function, it'll return an iteartor to the value just next/greater to it
+            greater than key
+
+        - Types of set
+            - 1. Multi Set: ```multiset<int> ms;```, it can store multiple elements, store duplicates, sorted
+            - 2. Unordered Set: Random order, TC = O(1), rarely O(n), stores unique values, unsorted, no lower/upper bound
             
 
 - ## Algorithms
-- ## Functors
