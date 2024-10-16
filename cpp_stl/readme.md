@@ -63,6 +63,7 @@
             - emplace_back: push elements (create implace/inplace object) at back 
             - emplace_front: push elements(create implace/inplace object) at front
             - all other functions: size, erase, clear, begin, end, rbegin, rend, insert, fron, back, also exist in list
+            - capacity function does not exist
 
     * Deque - Double Ended Queue:
         - Very similar to a list
