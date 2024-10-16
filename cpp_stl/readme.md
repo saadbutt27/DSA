@@ -1,7 +1,6 @@
 # C++ STL (Standard Template Library)
 
 ## Containers
-    Sequential Containers
     * Vector
         - Dynamic: Data is stored as in an array, but it is dynamic, or resizeable. Vectors can increase or decrease their size at runtime.
         - Initialization:
@@ -77,7 +76,6 @@
             - all functions: push_back, push_front, emplace_back, emplace_front, size, erase, clear, begin, end, rbegin, rend, insert, front, back, also exist in deque
             - capacity function does not exist
     
-    Non-sequential Containers:
     * Pair:
         - Part of C++ utility libraries, can be created directly
         - Can be used to store two values of different types(or same)
