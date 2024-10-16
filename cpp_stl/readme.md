@@ -175,7 +175,7 @@
 
         - Types of set
             - 1. Multi Set: ```multiset<int> ms;```, it can store multiple elements, store duplicates, sorted
-            - 2. Unordered Set: Random order, TC = O(1), rarely O(n), stores unique values, unsorted, no lower/upper bound
+            - 2. Unordered Set: ```unordered_set<int> us;``` Random order, TC = O(1), rarely O(n), stores unique values, unsorted, no lower/upper bound
             
 
 - ## Algorithms
