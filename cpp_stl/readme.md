@@ -1,16 +1,16 @@
 # C++ STL (Standard Template Library)
 
-Containers
-    Sequential Containers
+- ## Containers
+    ### Sequential Containers
     * Vector
         - Dynamic: Data is stored as in an array, but it is dynamic, or resizeable. Vectors can increase or decrease their size at runtime.
         - Initialization:
-            - vector<datatype> name = {data}; A vector with values (data)
-               Ex: vector<int> vec1 = {1, 2, 3, 4, 5};
-            - vector<datatype> name(size, values); A vector with a size and values on every index
-               Ex: vector<int> vec2(3, 10); => Output: [10, 10, 10]
-            - vector<datatype> name(other_vector); A vector initialized with elements of another vector
-               Ex: vector<int> vec2(vec1); => Output: [1, 2, 3, 4, 5]
+            - ```vector<datatype> name = {data};``` A vector with values (data)
+               Ex: ```vector<int> vec1 = {1, 2, 3, 4, 5};```
+            - ```vector<datatype> name(size, values);``` A vector with a size and values on every index
+               Ex: ```vector<int> vec2(3, 10);``` => Output: [10, 10, 10]
+            - ```vector<datatype> name(other_vector);``` A vector initialized with elements of another vector
+               Ex: ```vector<int> vec2(vec1);``` => Output: [1, 2, 3, 4, 5]
         - Functions:
             - * TC = O(1)
             - size() - returns the size of the vector (number of elements stored in the vector)
@@ -44,18 +44,18 @@ Containers
 
         - Why we use iterators?
            . We use iterators to loop through the vectors
-           . Create iterator: vector<datatype>::iterator iterator_name;
-           . Create reverse iterator: vector<datatype>::reverse_iterator iterator_name;
-           . creating a for loop will be like this: for (vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+           . Create iterator: ```vector<datatype>::iterator iterator_name;```
+           . Create reverse iterator: ```vector<datatype>::reverse_iterator iterator_name;```
+           . creating a for loop will be like this: ```for (vector<int>::iterator it = vec.begin(); it != vec.end(); it++)```
            . Modern C++ gives us a feasability to write auto instead of defining the whole type of iterator
-           . Write this for (auto it = vec.begin(); it != vec.end(); it++)
+           . Write this ```for (auto it = vec.begin(); it != vec.end(); it++)```
            . It will understand the type of iterator variable from begin/rbegin
            . Loop through the vector using iterator
     
     * List
         - A sequntial container like vectors. 
         - Internally implemented as Double Linked List. Can be pushed/emplaced or popped from front and back.
-        - Random access is not possible, such as li[3] will giev an error
+        - Random access is not possible, such as ```li[3]``` will giev an error
         - initialization:
             - initialization of list can also be done like in vectors
         - Functions:
@@ -70,22 +70,22 @@ Containers
         - Very similar to a list
         - Dequeue - this means to pop an element from a normal queue
         - Deque is implemented as dynamic arrays
-        - Random access is possible, such as: dq[3]
+        - Random access is possible, such as: ```dq[3]```
         - Initialization:
-            deque<int> d = {1, 2, 3};
+            ```deque<int> d = {1, 2, 3};```
         - Functions:
             - all functions: push_back, push_front, emplace_back, emplace_front, size, erase, clear, begin, end, rbegin, rend, insert, front, back, also exist in deque
             - capacity function does not exist
     
-    Non-sequential Containers:
+    ### Non-sequential Containers:
     * Pair:
         - Part of C++ utility libraries, can be created directly
         - Can be used to store two values of different types(or same)
         - We can use pair as a dataype such as, we need a pair of integer and pair of character and float
         - Initialization:
-            - pair<int, int> p = {3, 2};
-            - pair<char, int> p = {'a', 1};
-            - pair<int, pair<char, float>> p = {1, {'d', 4.5f}};
+            - ```pair<int, int> p = {3, 2};```
+            - ```pair<char, int> p = {'a', 1};```
+            - ```pair<int, pair<char, float>> p = {1, {'d', 4.5f}};```
         - Attributes:
             - first, second -> returns the first and secont element of the pair
 
@@ -94,7 +94,7 @@ Containers
         - Inserts elements from top/front
         - Deletes elements from top/front
         - Initialization/Creation:
-            - stack<datatype> name; => stack<int> s;
+            - ```stack<datatype> name;``` => ```stack<int> s;```
         - Functions:
             - push, empalce: used to insert element at the top
             - top: to check which element is at the top of the stack
@@ -107,7 +107,7 @@ Containers
         - Inserts elements from rear/end/last
         - Deletes elements from front
         - Initialization/Creation:
-            - queue<datatype> name; => queue<int> q;
+            - ```queue<datatype> name;``` => ```queue<int> q;```
         - Functions:
             - push, empalce: used to insert element at the rear/end
             - front: to check which element is at the front of the queue
@@ -122,10 +122,10 @@ Containers
         - Min heap has the smallest element at its root node 
         - At top/front, highest priority element will be stored(by default, larget value)
         - Initialization/Creation:
-            - priority_queue<datatype> name; => 
-                priority_queue<int> pq; creates a largest value priority queue
-                priority_queue<int, vector<int>, greater<int>> pq; creates a smallest value priority queue
-                    greater<int> is a functor : A functor is a function object, we pass it to do some work. It is like a comparator like a function whcih tells the logic for how to compare, we use them when we have to sort the data to ascending or descending order
+            - ```priority_queue<datatype> name;``` => 
+                ```priority_queue<int> pq;``` creates a largest value priority queue
+                ```priority_queue<int, vector<int>, greater<int>> pq;``` creates a smallest value priority queue
+                    ```greater<int>``` is a functor: A functor is a function object, we pass it to do some work. It is like a comparator like a function whcih tells the logic for how to compare, we use them when we have to sort the data to ascending or descending order
         - Functions:
             - push, empalce: used to insert element at the rear/end, according to the priority(larget/smallest) of the value - TC = O(logn)
             - top: to check which element is at the top of the queue - TC = O(1)
@@ -133,5 +133,5 @@ Containers
             - empty: checks if the priority queue is empty or not
             - size: returns the size of priority queue
 
-Algorithms
-Functors
+- ## Algorithms
+- ## Functors
