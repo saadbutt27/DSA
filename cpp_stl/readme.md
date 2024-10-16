@@ -62,5 +62,15 @@
             - emplace_back: push elements (create implace/inplace object) at back 
             - emplace_front: push elements(create implace/inplace object) at front
             - all other functions: size, erase, clear, begin, end, rbegin, rend, insert, fron, back, also exist in list
+
+    * Deque - Double Ended Queue:
+        - Very similar to a list
+        - Dequeue - this means to pop an element from a normal queue
+        - Deque is implemented as dynamic arrays
+        - Random access is possible, such as : dq[3]
+        - Initialization:
+            deque<int> d = {1, 2, 3};
+        - Functions:
+            - all functions: push_back, push_front, emplace_back, emplace_front, size, erase, clear, begin, end, rbegin, rend, insert, front, back, also exist in deque
 - Algorithms
 - Functors
