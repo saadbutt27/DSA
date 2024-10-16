@@ -133,5 +133,32 @@
             - empty: checks if the priority queue is empty or not
             - size: returns the size of priority queue
 
+    * Map:
+        - Specifically used to store key value pairs
+        - Keys are unique values, such as registration number
+        - Map stores the key values pairs in lexicographic order of keys. Sort the data in ascending order by default
+        - Maps ar internally implemented as a self balancing tree
+        - Initialization/Creation:
+            ```map<key type, value type> name;``` => ```map<string, key> m;```
+            To insert or change values in a map we use this syntax => ```m[key] = value```
+        - Functions:
+            - insert: emplace: used to insert new key value pairs in the map
+            - count: returns the number of a specific key exists in map, takes parameter key
+            - erase: erase any key value pair of specific key, takes parameter key
+            - find: returns an iterator pointing to the key value pair if the key exists in map else returns end iterator
+            - size: returns size of the map
+            - empty: checks if the map is empty or not
+            - TC = O(logn) for insert, erase, count
+
+        - Types of Map:
+            - 1. Multi Map: It is a map that can have multiple values for a single key
+                - We can create duplicate keys, we do not use [] to insert data e.g. ```m["tv"] = 10;``` is not allowed
+                - ALl other functionalities are same
+            - 2. Unordered Map: It is a map that can have multiple values for a single key
+                - Stores data in a random order
+                - TC = O(1) for insert, erase, count, rarely it is O(n)
+
+            
+
 - ## Algorithms
 - ## Functors
