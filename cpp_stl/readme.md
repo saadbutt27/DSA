@@ -54,6 +54,7 @@
     * List
         - A sequntial container like vectors. 
         - Internally implemented as Double Linked List. Can be pushed/emplaced or popped from front and back.
+        - Random access is not possible, such as li[3] will giev an error
         - initialization:
             - initialization of list can also be done like in vectors
         - Functions:

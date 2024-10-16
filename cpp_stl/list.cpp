@@ -20,5 +20,10 @@ int main() {
         cout << val << " ";
     }
     cout << endl;
+
+    // cout << li[3] << endl; Not  possible
+
+    cout << "Size: " << li.size() << endl;
+    // cout << "Capacity: " << li.capacity() << endl; Does not exist
     return 0;
 }
