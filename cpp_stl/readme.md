@@ -89,5 +89,18 @@
         - Attributes:
             - first, second -> returns the first and secont element of the pair
 
+    * Stack:
+        - LIFO - Last In First Out Structure
+        - Inserts elements from top/front
+        - Deletes elements from top/front
+        - Initialization/Creation:
+            - stack<datatype> name; => stack<int> s;
+        - Functions:
+            - push, empalce: used to insert element at the top
+            - top: to check which element is at the top of the stack
+            - empty: checks if the stack is empty or not
+            - size: returns the size of stack
+            - swap: swaps one stack to another stack
+
 - Algorithms
 - Functors
