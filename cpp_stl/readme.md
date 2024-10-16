@@ -33,6 +33,34 @@
             previous data is copied into the new vector
             new element is inserted into the new vector
             next time, vector size will be doubled to 4
-- Iterators
+
+    * Vector - Iterators
+        - begin: return begining iterator, imagine it like a pointer. It will point to first element's memory location
+        - end: return ending iterator, imagine it like a pointer. It will point to last(next to n-1) element's memory location
+            we can use derefrencing operator * to get the value.
+        - rbegin: return begining iterator from last index
+        - rend: return ending iterator from one previous to the start(i.e. befor 0th index)
+
+        - Why we use iterators?
+           . We use iterators to loop through the vectors
+           . Create iterator: vector<datatype>::iterator iterator_name;
+           . Create reverse iterator: vector<datatype>::reverse_iterator iterator_name;
+           . creating a for loop will be like this: for (vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+           . Modern C++ gives us a feasability to write auto instead of defining the whole type of iterator
+           . Write this for (auto it = vec.begin(); it != vec.end(); it++)
+           . It will understand the type of iterator variable from begin/rbegin
+           . Loop through the vector using iterator
+    
+    * List
+        - A sequntial container like vectors. 
+        - Internally implemented as Double Linked List. Can be pushed/emplaced or popped from front and back.
+        - initialization:
+            - initialization of list can also be done like in vectors
+        - Functions:
+            - push_back: push elements at back 
+            - push_front: push elements at front
+            - emplace_back: push elements (create implace/inplace object) at back 
+            - emplace_front: push elements(create implace/inplace object) at front
+            - all other functions: size, erase, clear, begin, end, rbegin, rend, insert, fron, back, also exist in list
 - Algorithms
 - Functors

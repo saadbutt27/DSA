@@ -12,9 +12,9 @@ int main() {
     vec.push_back(4);
     vec.push_back(5);
 
-    vec.emplace_back(6);
+    // vec.emplace_back(6);
 
-    vec.pop_back();
+    // vec.pop_back();
     
     cout << "Size: " << vec.size() << endl;
     cout << "Capacity: " << vec.capacity() << endl;
@@ -25,10 +25,10 @@ int main() {
     }
     cout << endl;
 
-    cout << "value at index 2 is " << vec.at(2) << " " << vec[2] << endl;
+    // cout << "value at index 2 is " << vec.at(2) << " " << vec[2] << endl;
 
-    cout << "front " << vec.front() << endl;
-    cout << "back " << vec.back() << endl;
+    // cout << "front " << vec.front() << endl;
+    // cout << "back " << vec.back() << endl;
 
     // vec.erase(vec.begin()); // erase first element
     // vec.erase(vec.begin() + 2); // erase 3rd element
@@ -38,19 +38,35 @@ int main() {
     // vec.insert(vec.begin() + 2, 100); // insert 100 at index 2
     // cout << "vec after inserting element: ";
 
-    cout << "Vector is empty? " << vec.empty() << endl;
+    // cout << "Vector is empty? " << vec.empty() << endl;
 
-    vec.clear();
-    cout << "vec after clearning: ";
-    for (int cal: vec) {
-        cout << cal << " ";
+    // vec.clear();
+    // cout << "vec after clearning: ";
+    // for (int cal: vec) {
+    //     cout << cal << " ";
+    // }
+    // cout << endl;
+
+    // cout << "Vector is empty? " << vec.empty() << endl;
+
+    // cout << "Size: " << vec.size() << endl;
+    // cout << "Capacity: " << vec.capacity() << endl;
+
+    cout << "vec.begin: " << *(vec.begin()) << endl;
+    cout << "vec.end: " << *(vec.end()) << endl;
+
+    vector<int>::iterator it;
+    cout << "Using iterator: ";
+    for (it = vec.begin(); it != vec.end(); it++) {
+        cout << *(it) << " ";
     }
     cout << endl;
 
-    cout << "Vector is empty? " << vec.empty() << endl;
-
-    cout << "Size: " << vec.size() << endl;
-    cout << "Capacity: " << vec.capacity() << endl;
+    cout << "Using reverse iterator: ";
+    for (auto rit = vec.rbegin(); rit != vec.rend(); rit++) {
+        cout << *(rit) << " ";
+    }
+    cout << endl;
 
 
     // vector<int> vec1 = {1, 2, 3};
