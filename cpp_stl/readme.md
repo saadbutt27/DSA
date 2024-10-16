@@ -1,7 +1,7 @@
 # C++ STL (Standard Template Library)
 
 ## - Containers
-    ### - Sequential Containers
+    - Sequential Containers
     * Vector
         - Dynamic: Data is stored as in an array, but it is dynamic, or resizeable. Vectors can increase or decrease their size at runtime.
         - Initialization:
