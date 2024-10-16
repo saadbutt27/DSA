@@ -116,5 +116,22 @@
             - size: returns the size of queue
             - swap: swaps one queue to another queue
 
+    * Priority Queue:
+        - Internally, it use Max/Min Heap Structure that are complete binary trees
+        - Max heap has the largest element at its root node 
+        - Min heap has the smallest element at its root node 
+        - At top/front, highest priority element will be stored(by default, larget value)
+        - Initialization/Creation:
+            - priority_queue<datatype> name; => 
+                priority_queue<int> pq; creates a largest value priority queue
+                priority_queue<int, vector<int>, greater<int>> pq; creates a smallest value priority queue
+                    greater<int> is a functor : A functor is a function object, we pass it to do some work. It is like a comparator like a function whcih tells the logic for how to compare, we use them when we have to sort the data to ascending or descending order
+        - Functions:
+            - push, empalce: used to insert element at the rear/end, according to the priority(larget/smallest) of the value - TC = O(logn)
+            - top: to check which element is at the top of the queue - TC = O(1)
+            - pop: removes element from front - TC = O(logn)
+            - empty: checks if the priority queue is empty or not
+            - size: returns the size of priority queue
+
 - Algorithms
 - Functors
