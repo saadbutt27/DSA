@@ -179,3 +179,17 @@
             
 
 - ## Algorithms
+    * Sorting
+        - ```sort(arr, arr+n);```: Used to sort the array. Parameters: start and end(next to n-1) of the array, for vectors we can pass begin and end iteartors
+        - By default, it sort in ascending order
+        - ```sort(arr, arr + n, greater<int>());```: TO sort in descending order, we pass functor which is a comparator which basically is a function that tells the logic for camparison
+        - To sort a vector of pairs, be default sort function sort it on the basis of the first values in the pairs
+        - If we want to sort them using 2nd values, we will make custom comparators
+        - Custom Comparator:
+            - We make a custome function to comapre second values of two pairs. The logic would be as follows:
+                ```bool cmparator(pair<int, int> p1, pair<int, int> p2) {```
+                        ```if (p1.second < p2.second) return true;```
+                        ```else return false;```
+                    ```}```
+                ```sort(vec.begin(), vec.end(), comparator);```
+            - We can make any logic, like if second values are equal the compare first values etc. 
