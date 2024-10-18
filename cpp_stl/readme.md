@@ -182,7 +182,7 @@
     * Sorting
         - ```sort(arr, arr+n);```: Used to sort the array. Parameters: start and end(next to n-1) of the array, for vectors we can pass begin and end iteartors
         - By default, it sort in ascending order
-        - ```sort(arr, arr + n, greater<int>());```: TO sort in descending order, we pass functor which is a comparator which basically is a function that tells the logic for camparison
+        - ```sort(arr, arr + n, greater<int>());```: To sort in descending order, we pass functor which is a comparator which basically is a function that tells the logic for camparison
         - To sort a vector of pairs, be default sort function sort it on the basis of the first values in the pairs
         - If we want to sort them using 2nd values, we will make custom comparators
         - Custom Comparator:
@@ -193,3 +193,27 @@
                     ```}```
                 ```sort(vec.begin(), vec.end(), comparator);```
             - We can make any logic, like if second values are equal the compare first values etc. 
+    * Reverse
+        - ```reverse(vec.begin(), vec.end())```: To revrse an array/vector
+        - We can specify range(part of the vector) to be reversed, ```reverse(vec.begin()+1, vec.begin()+3)```
+        - We can use the range thing in sorting as well
+    * Next Permutation
+        - ```next_permutation(vec.begin(), vec.end())```: To get the next permutation (arrangement of elements)
+        - For a vector/ string of length n, there are n! permutation
+        - E.g. for string abc, the permutations are: abc, acb, bac, bca, cab, cba. For n=3, 6 permutations
+        - We also have ```prev_permutation(vec.begin(), vec.end())```: To find the previous permutation
+    * Min
+         - ```min(4, 5)```: To find minimum value from any given values
+    * Max
+         - ```max(4, 5)```: To find maximum value from any given values
+    * Swap
+        - ```swap(a, b)```: To swap two values
+    * Max & Min Element
+        - ```*(max_element(vec.beign(), vec.end()));```: Returns max element's iterator in the vector, dereference it
+        - ```*(min_element(vec.beign(), vec.end()));```: Returns min element's iterator in the vector, dereference it
+    * Binary Search
+        - ```binary_search(vec.begin(), vec.end(), target);```: Returns true or false if target is found or not respectively
+    * Count Set Bits
+        - ```__builtin_popcount(15)```: Return count of set bits, 1 bits in 15's binary: 00000000000000000000000000001111 -> 4
+        - ```__builtin_popcountl(25000000)```: Used for long dataype integer
+        - ```__builtin_popcountll(3500000000000)```: Used for long long dataype integer
