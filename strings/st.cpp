@@ -12,6 +12,21 @@ void reverseString(char str[]) {
     }
 }
 
+// bool isPlaindrome(char str[]) {
+bool isPlaindrome(string str) {
+    // m a d a m
+    int st = 0;
+    // int end = strlen(str)-1;
+    int end = str.length()-1;
+
+    while (st < end) {
+        if (str[st++] != str[end--]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -75,6 +90,10 @@ int main() {
         cout << ch << " ";
     }
     cout << endl;
+
+    // char str6[] = "hello";
+    string str6 = "level";
+    cout << isPlaindrome(str6) << endl;
 
     return 0;
 }
