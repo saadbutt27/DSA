@@ -13,17 +13,46 @@ void reverseString(char str[]) {
 }
 
 // bool isPlaindrome(char str[]) {
-bool isPlaindrome(string str) {
-    // m a d a m
-    int st = 0;
-    // int end = strlen(str)-1;
-    int end = str.length()-1;
+// bool isPlaindrome(string str) {
+//     // m a d a m
+//     int st = 0;
+//     // int end = strlen(str)-1;
+//     int end = str.length()-1;
 
-    while (st < end) {
-        if (str[st++] != str[end--]) {
+//     while (st < end) {
+//         if (str[st++] != str[end--]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+bool isAlphaNumeric(char c) {
+    if ((c >= '0' && c <= '9') ||
+        tolower(c) >= 'a' && tolower(c) <= 'z') {
+            return true;
+        } else {
             return false;
         }
+}
+bool isPalindrome(string s) {
+    int st = 0, end = s.length()-1;
+
+    while (st < end) {
+        if (!isAlphaNumeric(s[st])) {
+            st++; continue;
+        }
+        if (!isAlphaNumeric(s[end])) {
+            end--; continue;
+        }
+
+        if (tolower(s[st]) != tolower(s[end])) {
+            return false;
+        }
+
+        st++; end--;
     }
+
     return true;
 }
 
@@ -93,7 +122,7 @@ int main() {
 
     // char str6[] = "hello";
     string str6 = "level";
-    cout << isPlaindrome(str6) << endl;
+    cout << isPalindrome(str6) << endl;
 
     return 0;
 }
