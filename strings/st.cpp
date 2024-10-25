@@ -56,6 +56,16 @@ bool isPalindrome(string s) {
     return true;
 }
 
+string removeOccurrences(string s, string part) {
+    // str.find(substring) => find the first occurence of a substring in a string
+    // str.erase(start_pos, length) => erase the characters from a string
+    while (s.length() > 0 && s.find(part) < s.length()) {
+        s.erase(s.find(part), part.length());
+    }
+    
+    return s;
+}
+
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -102,27 +112,30 @@ int main() {
     // // getline(cin, str4);
     // cout << str4 << endl;
 
-    string str5 = "apna college";
+    // string str5 = "apna college";
     // char str5[] = "apna college";
 
     // for(int i=0; i<str5.length(); i++) {
     //     cout << str5[i] << " ";
     // }
-    for(char ch: str5) {
-        cout << ch << " ";
-    }
-    cout << endl;
+    // for(char ch: str5) {
+    //     cout << ch << " ";
+    // }
+    // cout << endl;
 
-    // reverseString(str5);
-    reverse(str5.begin(), str5.end());
-    for(char ch: str5) {
-        cout << ch << " ";
-    }
-    cout << endl;
+    // // reverseString(str5);
+    // reverse(str5.begin(), str5.end());
+    // for(char ch: str5) {
+    //     cout << ch << " ";
+    // }
+    // cout << endl;
 
-    // char str6[] = "hello";
-    string str6 = "level";
-    cout << isPalindrome(str6) << endl;
+    // // char str6[] = "hello";
+    // string str6 = "level";
+    // cout << isPalindrome(str6) << endl;
+
+    string str7 = "daabcbaabcbc", part = "abc";
+    cout << str7 << " " << removeOccurrences(str7, part) << endl;
 
     return 0;
 }
