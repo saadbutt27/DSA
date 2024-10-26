@@ -66,6 +66,42 @@ string removeOccurrences(string s, string part) {
     return s;
 }
 
+bool isFreqSam(int freq1[], int freq2[]) {
+    for (int i = 0; i < 26; i++) {
+        if (freq1[i] != freq2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool checkInclusion(string s1, string s2) {
+    // 1. store frequency of the characters in s1
+    //        We will have only lowercase alphabets, so we can create a 26 length array or we can use unordered map
+    int freq[26] = {0};
+    for (int i=0; i<s1.length(); i++) {
+        freq[s1[i]-'a']++;
+    }   
+
+    // 2. search s1 permutation in s2
+    //      use window based approach ~ sliding window
+    //      check s1.length() size windows -> window freq, match freq with window freq   
+    int windowSize = s1.length();
+    for (int i=0; i<s2.length(); i++) {
+        int windowIdx = 0, idx = i;
+        int windowFreq[26] = {0};
+
+        while (windowIdx < windowSize && idx  < s2.length()) {
+            windowFreq[s2[idx]-'a']++;
+            windowIdx++, idx++;
+        }
+
+        if (isFreqSam(freq, windowFreq)) {
+            return true;
+        }
+    }
+    return false;
+}
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -134,8 +170,11 @@ int main() {
     // string str6 = "level";
     // cout << isPalindrome(str6) << endl;
 
-    string str7 = "daabcbaabcbc", part = "abc";
-    cout << str7 << " " << removeOccurrences(str7, part) << endl;
+    // string str7 = "daabcbaabcbc", part = "abc";
+    // cout << str7 << " " << removeOccurrences(str7, part) << endl;
+
+    string s1 = "ab", s2 = "eidbaooo";
+    cout << s1 << " " << s2 << " " << checkInclusion(s1, s2) << endl;
 
     return 0;
 }
