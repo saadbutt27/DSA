@@ -102,6 +102,54 @@ bool checkInclusion(string s1, string s2) {
     }
     return false;
 }
+
+// string reverseWords(string s) {
+//     string word; 
+//     vector<string> words;
+//     for (int i=0; i<s.size(); i++) {
+//         if(s[i] == ' ' && !word.empty()) {
+//             words.push_back(word);
+//             word.clear();
+//             continue;
+//         }
+//         if(s[i] == ' ') {
+//             continue;
+//         }
+//         word += s[i];
+//     }
+//     if(!word.empty()) {
+//         words.push_back(word);
+//         word.clear();
+//     }
+//     s.clear();
+//     for (int i = words.size() - 1; i >= 0; --i) {
+//         s += words[i];
+//         if (i > 0) {
+//             s += " ";
+//         }
+//     }
+//     return s;
+// }
+string reverseWords(string s) {
+    // TC = O(n)
+    int n = s.length();
+    string ans = "";
+    reverse(s.begin(), s.end());
+
+    for (int i=0; i<n; i++) {
+        string word = "";
+        while (i < n && s[i] != ' ') {
+            word += s[i++];
+        }
+
+        reverse(word.begin(), word.end());
+
+        if (word.length() > 0)
+            ans += " " + word;
+    }
+
+    return ans.substr(1);
+}
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -173,8 +221,11 @@ int main() {
     // string str7 = "daabcbaabcbc", part = "abc";
     // cout << str7 << " " << removeOccurrences(str7, part) << endl;
 
-    string s1 = "ab", s2 = "eidbaooo";
-    cout << s1 << " " << s2 << " " << checkInclusion(s1, s2) << endl;
+    // string s1 = "ab", s2 = "eidbaooo";
+    // cout << s1 << " " << s2 << " " << checkInclusion(s1, s2) << endl;
+
+    string s = "  hello world  ";
+    cout << s << endl << reverseWords(s) << endl;
 
     return 0;
 }
