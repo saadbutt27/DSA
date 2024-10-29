@@ -2,6 +2,7 @@
 #include <cstring>
 #include <string> // optional to write
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 void reverseString(char str[]) {
@@ -150,6 +151,40 @@ string reverseWords(string s) {
 
     return ans.substr(1);
 }
+
+int compress(vector<char>& chars) {
+    // 1. find continuous characters and count them
+    //      if count = 1, only character is replaced in the array
+    //      else if count > 1, charcater an count(converted to char) will be replaced in the array
+    // 2. replace count in original character array
+
+    // TC = O(n), SC = O(1)
+    int n = chars.size();
+    int idx = 0; // pointer index to track replacements
+    for (int i=0; i<n; i++) {
+        char ch = chars[i];
+        int count = 0; 
+
+        // counting contiuous characters
+        while (i<n && chars[i] == ch) {
+            count++; i++;
+        }
+
+        chars[idx++] = ch;
+        if (count > 1) {
+            // chars[idx++] = (count + '0');
+            string str = to_string(count);
+            for (char dig : str) {
+                chars[idx++] = dig;
+            }
+        }
+        i--;
+    }
+
+    chars.resize(idx);
+    return chars.size();
+}
+
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -224,8 +259,15 @@ int main() {
     // string s1 = "ab", s2 = "eidbaooo";
     // cout << s1 << " " << s2 << " " << checkInclusion(s1, s2) << endl;
 
-    string s = "  hello world  ";
-    cout << s << endl << reverseWords(s) << endl;
+    // string s = "  hello world  ";
+    // cout << s << endl << reverseWords(s) << endl;
+
+    vector<char> chars = {'a', 'a', 'b', 'c', 'c', 'c', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'};
+    for (char ch : chars) cout << ch << " ";
+    cout << endl;
+    cout << chars.size() << " " << compress(chars) << endl;
+    for (char ch : chars) cout << ch << " ";
+    cout << endl;
 
     return 0;
 }
