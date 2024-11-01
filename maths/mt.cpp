@@ -30,7 +30,7 @@ void printDigits(int n) {
     int count = 0;
     int sum = 0;
 
-    // TC = O(log10(n)) =-> 10 is base because we are dividing the number by 10
+    // TC = O(log10(n)) => 10 is base because we are dividing the number by 10
     while (n != 0) {
         int dig = n % 10;
         cout << dig << " ";
@@ -45,6 +45,21 @@ void printDigits(int n) {
     cout << "Sum of digits = " << sum << endl;
 }
 
+
+bool isArmstrong(int n) {
+    // TC = O(log10(n))
+    int n_copy = n;
+    int sum_of_cubes = 0;
+    while (n != 0) {
+        int dig = n % 10;
+        sum_of_cubes += (dig * dig * dig);
+
+        n /= 10;
+    }
+
+    return sum_of_cubes == n_copy;
+}
+
 int main() {
     // int n = 47;
     // cout << n << " is " << isPrime(n) << endl;
@@ -52,10 +67,13 @@ int main() {
     // int n = 50;
     // cout << "Count of primes form 1 to " << n << " is " << countPrimes(n) << endl;
 
-    int n = 285452;
-    printDigits(n);
+    // int n = 285452;
+    // printDigits(n);
 
-    cout << (int)(log10(n) + 1) << endl;
+    // cout << (int)(log10(n) + 1) << endl;
+
+    int n = 153;
+    cout << "Is " << n << " an Armstrong number?\n"<< (isArmstrong(n) ? "Yes" : "No") << endl;
 
     return 0;
 }
