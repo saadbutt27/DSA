@@ -94,6 +94,11 @@ int gcdEuclidRec(int a, int b) {
 
     return gcdEuclidRec(b, a % b);
 }
+
+int lcm (int a, int b) {
+    int gcd = gcdEuclidRec(a, b);
+    return (a * b) / gcd;
+}
 int main() {
     // int n = 47;
     // cout << n << " is " << isPrime(n) << endl;
@@ -109,10 +114,12 @@ int main() {
     // int n = 153;
     // cout << "Is " << n << " an Armstrong number?\n"<< (isArmstrong(n) ? "Yes" : "No") << endl;
 
-    int a = 20, b = 28;
-    cout << "GCD of " << a << " and " << b << " = " << gcd(a, b) << endl;
-    cout << "GCD (Euclid's Algorithm Iterative) of " << a << " and " << b << " = " << gcdEuclidIter(a, b) << endl;
-    cout << "GCD (Euclid's Algorithm Recursive) of " << a << " and " << b << " = " << gcdEuclidRec(a, b) << endl;
+    // int a = 20, b = 28;
+    // cout << "GCD of " << a << " and " << b << " = " << gcd(a, b) << endl;
+    // cout << "GCD (Euclid's Algorithm Iterative) of " << a << " and " << b << " = " << gcdEuclidIter(a, b) << endl;
+    // cout << "GCD (Euclid's Algorithm Recursive) of " << a << " and " << b << " = " << gcdEuclidRec(a, b) << endl;
 
+    int a = 20, b = 28;
+    cout << "LCM of " << a << " and " << b << " = " << lcm(a, b) << endl;
     return 0;
 }
