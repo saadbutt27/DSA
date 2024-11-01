@@ -99,6 +99,23 @@ int lcm (int a, int b) {
     int gcd = gcdEuclidRec(a, b);
     return (a * b) / gcd;
 }
+
+int reverseNumber (int x) {
+    int revX = 0;
+
+    while (x != 0) {
+        int dig = x % 10;
+
+        if (revX > INT_MAX/10 || revX < INT_MIN/10) {
+            return 0;
+        }
+        revX = (revX * 10) + dig;
+
+        x /= 10;
+    }
+
+    return revX;
+}
 int main() {
     // int n = 47;
     // cout << n << " is " << isPrime(n) << endl;
@@ -119,7 +136,10 @@ int main() {
     // cout << "GCD (Euclid's Algorithm Iterative) of " << a << " and " << b << " = " << gcdEuclidIter(a, b) << endl;
     // cout << "GCD (Euclid's Algorithm Recursive) of " << a << " and " << b << " = " << gcdEuclidRec(a, b) << endl;
 
-    int a = 20, b = 28;
-    cout << "LCM of " << a << " and " << b << " = " << lcm(a, b) << endl;
+    // int a = 20, b = 28;
+    // cout << "LCM of " << a << " and " << b << " = " << lcm(a, b) << endl;
+
+    int x = 458;
+    cout << "Reverse of " << x << " is " << reverseNumber(x) << endl; 
     return 0;
 }
