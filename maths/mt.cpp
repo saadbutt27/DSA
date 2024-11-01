@@ -116,6 +116,12 @@ int reverseNumber (int x) {
 
     return revX;
 }
+
+bool isPlaindorme(int x) {
+    if (x < 0) return false;
+    return x == reverseNumber(x);
+}
+
 int main() {
     // int n = 47;
     // cout << n << " is " << isPrime(n) << endl;
