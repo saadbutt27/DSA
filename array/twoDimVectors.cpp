@@ -45,8 +45,27 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
     return false;
 }
 
+bool searchMatrix2(vector<vector<int>>& matrix, int target) {
+    // TC = O(n + m)
+    int m = matrix.size(), n = matrix[0].size();
+
+    int r = 0, c = n-1;
+    while (r < m && c >= 0) {
+        if (target == matrix[r][c]) {
+            return true;
+        } else if (target >= matrix[r][c]) {
+            r++;
+        } else {
+            c--;
+        }
+    }
+
+    return false;   
+}
+
 int main() {
-    vector<vector<int>> mat = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
+    // vector<vector<int>> mat = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
+    vector<vector<int>> mat = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};
 
     // rows => mat.size();
     // cols => mat[i].size();
@@ -57,6 +76,7 @@ int main() {
         cout << endl;
     }
 
-    cout << searchMatrix(mat, 34+1) << endl;
+    // cout << searchMatrix(mat, 34+1) << endl;
+    cout << searchMatrix2(mat, 5) << endl;
     return 0;
 }
