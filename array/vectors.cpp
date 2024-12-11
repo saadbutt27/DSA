@@ -2,6 +2,7 @@
 using namespace std;
 #include "vector"
 #include "algorithm"
+#include <unordered_map>
 
 int singleNumber(vector<int>& nums) {
     // Leetcode problem # 136. Single Number
@@ -286,6 +287,40 @@ vector<int> productExceptSelf(vector<int>& nums) {
     return ans;
 }
 
+
+vector<int> twoSum(vector<int> numbers, int target) {
+    vector<int> ans(2, -1);
+    // BRUTE FORCE APPROACH - Find all pairs sum - TC = O(n^2) 
+    // BETTER APPROACH - Sort and two pointer approach - TC = O(nlogn) 
+    // sort(numbers.begin(), numbers.end());
+    // int st = 0, end = numbers.size()-1;
+    // while (st < end) {
+    //     int sum = numbers[st] + numbers[end];
+    //     if (sum == target) {
+    //         ans[0] = st;
+    //         ans[1] = end;
+    //         break;
+    //     }
+    //     else if (sum > target) end--;
+    //     else st++;
+    // }
+
+    // OPTIMIZED APPROACH - Use Hashing - TC = O(n) 
+    unordered_map<int, int> um;
+    for (int i=0; i<numbers.size(); i++) {
+        int first = numbers[i];
+        int sec = target - first;
+        if (um.find(sec) != um.end()) {
+            ans[0] = i;
+            ans[1] = um[sec];
+            break;
+        } 
+        um[first] = i;
+    }
+
+    return ans;
+}
+
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
@@ -316,8 +351,14 @@ int main() {
     // vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
     // cout << maxArea(height) << endl;
 
-    vector<int> nums = {1, 2, 3, 4};
-    vector<int> ans = productExceptSelf(nums);
+    // vector<int> nums = {1, 2, 3, 4};
+    // vector<int> ans = productExceptSelf(nums);
+    // for (int i=0; i<ans.size(); i++) {
+    //     cout << ans[i] << " ";
+    // }
+    // cout << endl;
+    vector<int> nums = {3, 2, 4};
+    vector<int> ans = twoSum(nums, 6);
     for (int i=0; i<ans.size(); i++) {
         cout << ans[i] << " ";
     }
