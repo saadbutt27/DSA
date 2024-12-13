@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 using namespace std;
 
 bool searchInRow(vector<vector<int>> matrix, int target, int row) {
@@ -98,6 +99,31 @@ vector<int> spiralOrder(vector<vector<int>>& mat) {
     return ans;
 }
 
+vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+    // TC = O(n^2)
+    vector<int> ans(2, -1);
+    unordered_set<int> s;
+    int n = grid.size();
+    int a, b, expecSum, actualSum = 0;
+
+    for (int i=0; i<n; i++) {
+        for (int j=0; j<n; j++) {
+            actualSum += grid[i][j];
+
+            if (s.find(grid[i][j]) != s.end()) {
+                a = grid[i][j];
+                ans[0] = a;
+            }
+            s.insert(grid[i][j]);
+        }
+    }
+
+    expecSum = (n*n) * (n*n + 1) / 2;
+    b = expecSum + a - actualSum;
+    ans[1] = b;
+    return ans;
+}
+
 void print1DVector(vector<int> vec) {
     for (int i=0; i<vec.size(); i++) {
         cout << vec[i] << " "; 
@@ -119,12 +145,17 @@ int main() {
 
     // rows => mat.size();
     // cols => mat[i].size();
-    print2DVector(mat);
+    // print2DVector(mat);
 
     // cout << searchMatrix(mat, 34+1) << endl;
     // cout << searchMatrix2(mat, 5) << endl;
 
-    vector<int> res = spiralOrder(mat);
+    // vector<int> res = spiralOrder(mat);
+    // print1DVector(res);
+
+    vector<vector<int>> grid = {{1, 9 , 5}, {8, 4, 2}, {8, 7, 3}};
+    vector<int> res = findMissingAndRepeatedValues(grid);
+    print2DVector(grid);
     print1DVector(res);
 
     return 0;
