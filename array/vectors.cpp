@@ -3,6 +3,7 @@ using namespace std;
 #include "vector"
 #include "algorithm"
 #include <unordered_map>
+#include <unordered_set>
 
 int singleNumber(vector<int>& nums) {
     // Leetcode problem # 136. Single Number
@@ -287,7 +288,6 @@ vector<int> productExceptSelf(vector<int>& nums) {
     return ans;
 }
 
-
 vector<int> twoSum(vector<int> numbers, int target) {
     vector<int> ans(2, -1);
     // BRUTE FORCE APPROACH - Find all pairs sum - TC = O(n^2) 
@@ -321,6 +321,53 @@ vector<int> twoSum(vector<int> numbers, int target) {
     return ans;
 }
 
+int findDuplicate(vector<int>& nums) {
+    // TC = O(n), SC = O(n)
+    // unordered_set<int> s;
+
+    // for(int val : nums) {
+    //     if (s.find(val) != s.end())
+    //         return val;
+
+    //     s.insert(val);
+    // }
+    // return -1;
+
+    // TC = O(n), SC = O(1)
+    // Use slow and fast pointer approach
+    int slow = nums[0], fast = nums[0];
+    
+    do {
+        cout << "slow = " << slow << "\nend = " << fast << endl;
+        slow = nums[slow]; // +1
+        fast = nums[nums[fast]]; // +2
+    } while (slow != fast);
+
+    slow = nums[0];
+    while (slow != fast) {
+        cout << "\nslow = " << slow << "\nend = " << fast << endl;
+        slow = nums[slow]; // +1
+        fast = nums[fast]; // +1
+    }
+
+    return slow;
+
+    // sort(nums.begin(), nums.end());
+    // int rep = nums[0];
+    // for(int i=1; i<nums.size(); ++i) {
+    //     if(nums[i] == rep) return nums[i];
+    //     rep = nums[i];
+    // }
+
+    // return -1;
+}
+
+void printVector(vector<int> nums) {
+    for (int i=0; i<nums.size(); i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+}
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
@@ -357,13 +404,13 @@ int main() {
     //     cout << ans[i] << " ";
     // }
     // cout << endl;
-    vector<int> nums = {3, 2, 4};
-    vector<int> ans = twoSum(nums, 6);
-    for (int i=0; i<ans.size(); i++) {
-        cout << ans[i] << " ";
-    }
-    cout << endl;
-    
+    // vector<int> nums = {3, 2, 4};
+    // vector<int> ans = twoSum(nums, 6);
+    // printVector(ans);
 
+    vector<int> nums = {3, 1, 2, 4, 3};
+    printVector(nums);
+    cout << findDuplicate(nums) << endl;
+    
     return 0;
 }
