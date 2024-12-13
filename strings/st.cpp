@@ -2,6 +2,7 @@
 #include <cstring>
 #include <string> // optional to write
 #include <algorithm>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -185,6 +186,80 @@ int compress(vector<char>& chars) {
     return chars.size();
 }
 
+// Morse code dictionary with accurate character lengths
+unordered_map<char, string> morse_code = {
+    {'a', ".-"}, {'b', "-..."}, {'c', "-.-."}, {'d', "-.."}, {'e', "."}, {'f', "..-."}, {'g', "--."}, {'h', "...."},
+    {'i', ".."}, {'j', ".---"}, {'k', "-.-"}, {'l', ".-.."}, {'m', "--"}, {'n', "-."}, {'o', "---"}, {'p', ".--."},
+    {'q', "--.-"}, {'r', ".-."}, {'s', "..."}, {'t', "-"}, {'u', "..-"}, {'v', "...-"}, {'w', ".--"}, {'x', "-..-"},
+    {'y', "-.--"}, {'z', "--.."}, {' ', "/"}  // Space is represented by '/'
+};
+
+// Function to calculate Morse code length
+int morseCodeLength(const string &message) {
+    int total_length = 0;
+
+    // Split the message into words
+    vector<string> words;
+    string word = "";
+    for (char c : message) {
+        if (c == ' ') {
+            if (!word.empty()) {
+                words.push_back(word);
+                word = "";
+            }
+        } else {
+            word += tolower(c);
+        }
+    }
+    if (!word.empty()) words.push_back(word);
+
+    // Process each word
+    for (size_t word_index = 0; word_index < words.size(); ++word_index) {
+        int word_length = 0;
+
+        for (size_t char_index = 0; char_index < words[word_index].length(); ++char_index) {
+            char c = words[word_index][char_index];
+            // cout << "character: " << c << endl;
+            if (morse_code.find(c) != morse_code.end()) {
+                string morse = morse_code[c];
+                // cout << "morse: " << morse << endl;
+                int char_length = 0;
+
+                // Count the dashes (3 units each) and dots (1 unit each)
+                for (char symbol : morse) {
+                    if (symbol == '-') char_length += 3;
+                    else if (symbol == '.') char_length += 1;
+                }
+                // cout << "char_length of dots and dashes: " << char_length << endl;
+
+                // Add the gaps between symbols (dots/dashes) for the character
+                char_length += morse.length() - 1;
+                // cout << "char_length of gaps between fots and dashes: " << char_length << endl;
+
+                word_length += char_length;
+                // cout << "word_length: " << char_length << endl;
+
+                // Add the gap between characters (3 units)
+                if (char_index < words[word_index].length() - 1) {
+                    word_length += 3;
+                }
+                // cout << "word_length with gap between characaters: " << char_length << endl;
+            }
+        }
+
+        total_length += word_length;
+        // cout << "total_length: " << total_length << endl; 
+
+        // Add the gap between words (7 units)
+        if (word_index < words.size() - 1) {
+            total_length += 7;
+        }
+        // cout << "total_length with gap between words: " << total_length << endl; 
+    }
+
+    return total_length;
+}
+
 int main() {
     // Character arrays - C strings
     // We can use them to store strings
@@ -262,12 +337,30 @@ int main() {
     // string s = "  hello world  ";
     // cout << s << endl << reverseWords(s) << endl;
 
-    vector<char> chars = {'a', 'a', 'b', 'c', 'c', 'c', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'};
-    for (char ch : chars) cout << ch << " ";
-    cout << endl;
-    cout << chars.size() << " " << compress(chars) << endl;
-    for (char ch : chars) cout << ch << " ";
-    cout << endl;
+    // vector<char> chars = {'a', 'a', 'b', 'c', 'c', 'c', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'};
+    // for (char ch : chars) cout << ch << " ";
+    // cout << endl;
+    // cout << chars.size() << " " << compress(chars) << endl;
+    // for (char ch : chars) cout << ch << " ";
+    // cout << endl;
+
+    int n;
+    cin >> n;  // Number of messages
+    cin.ignore();  // Ignore newline after integer input
+
+    for (int i = 0; i < n; i++) {
+        string message;
+        getline(cin, message);
+        
+        // Convert the message to lowercase
+        for (char &c : message) {
+            c = tolower(c);
+        }
+
+        // Calculate the Morse code length and print the result
+        int length = morseCodeLength(message);
+        cout << message << ": length = " << length << endl;
+    }
 
     return 0;
 }
