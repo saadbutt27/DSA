@@ -4,6 +4,23 @@ using namespace std;
 #include "algorithm"
 #include <unordered_map>
 #include <unordered_set>
+#include <set>
+
+void printVector(vector<int> nums) {
+    for (int i=0; i<nums.size(); i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+}
+
+void print2DVector(vector<vector<int>> mat) {
+    for (int i=0; i<mat.size(); i++) {
+        for (int j=0; j<mat[i].size(); j++) {
+            cout << mat[i][j] << " "; 
+        }
+        cout << endl;
+    }
+}
 
 int singleNumber(vector<int>& nums) {
     // Leetcode problem # 136. Single Number
@@ -362,12 +379,79 @@ int findDuplicate(vector<int>& nums) {
     // return -1;
 }
 
-void printVector(vector<int> nums) {
-    for (int i=0; i<nums.size(); i++) {
-        cout << nums[i] << " ";
+vector<vector<int>> threeSum(vector<int>& nums) {
+    // BRUTE FORCE - TC = O(n^3 * log(unique_triplets)). SC = O(unique_triplets)
+    // Find all triplets in the array, and shortlist the unique ones whose sum equals to 0, and all three numbers should not be the same
+    // vector<vector<int>> result;
+    // set<vector<int>> uniqueTriplets;
+    // int n = nums.size();
+    // for (int i=0; i<n; i++) {
+    //     for (int j=i+1; j<n; j++) {
+    //         for (int k=j+1; k<n; k++) {
+    //             if (nums[i]+nums[j]+nums[k] == 0) {
+    //                 vector<int> triplet = {nums[i], nums[j], nums[k]};
+    //                 sort(triplet.begin(), triplet.end());
+
+    //                 if (uniqueTriplets.find(triplet) == uniqueTriplets.end()) {
+    //                     uniqueTriplets.insert(triplet);
+    //                     result.push_back(triplet);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    
+    // HASHING APPROACH - TC = O(n^2 * log(unique_triplets)). SC = O(unique_triplets + n)
+    // set<vector<int>> uniqueTriplets;
+    // int n = nums.size();
+
+    // for (int i=0; i<n; i++) {
+    //     int target = -nums[i];
+    //     set<int> s;
+
+    //     for (int j=i+1; j<n; j++) {
+    //         int third = target - nums[j];
+
+    //         if (s.find(third) != s.end()) {
+    //             vector<int> triplet = {nums[i], nums[j], third};
+    //             sort(triplet.begin(), triplet.end());
+    //             uniqueTriplets.insert(triplet);
+    //         }
+    //         s.insert(nums[j]); 
+    
+    //     }
+    // }
+
+    // vector<vector<int>>result(uniqueTriplets.begin(), uniqueTriplets.end());
+    // return result;
+
+    // 2-POINTER APPROACH - TC = O(nlogn + n^2) = O(n^2), SC = O(uniqueTriplets)
+    int n = nums.size();
+    sort(nums.begin(), nums.end()); // o(nlogn)
+    vector<vector<int>> result;
+
+    for (int i=0; i<n; i++) {
+
+        if (i>0 && nums[i] == nums[i-1]) continue;
+
+        int j = i+1, k = n-1;
+        while (j < k) {
+            int sum = nums[i] + nums[j] + nums[k];
+            if (sum < 0) {
+                j++;
+            } else if (sum > 0) {
+                k--;
+            } else {
+                result.push_back({nums[i], nums[j], nums[k]});
+                j++, k--;
+                
+                while (j<k && nums[j] == nums[j-1]) j++;
+            }
+        }
     }
-    cout << endl;
+    return result;
 }
+
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
@@ -408,9 +492,14 @@ int main() {
     // vector<int> ans = twoSum(nums, 6);
     // printVector(ans);
 
-    vector<int> nums = {3, 1, 2, 4, 3};
+    // vector<int> nums = {3, 1, 2, 4, 3};
+    // printVector(nums);
+    // cout << findDuplicate(nums) << endl;
+
+    vector<int> nums = {-1, 0, 1, 2, -1, -4};
     printVector(nums);
-    cout << findDuplicate(nums) << endl;
+    vector<vector<int>> threeSumAns = threeSum(nums);
+    print2DVector(threeSumAns);
     
     return 0;
 }
