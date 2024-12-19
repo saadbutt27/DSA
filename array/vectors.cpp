@@ -453,41 +453,41 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 }
 
  vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        // 2-POINTER APPROACH - TC = O(nlogn + n^3) = O(n^2), SC = O(uniqueGroups)
-        vector<vector<int>> result;
-        int n = nums.size();
+    // 2-POINTER APPROACH - TC = O(nlogn + n^3) = O(n^2), SC = O(uniqueGroups)
+    vector<vector<int>> result;
+    int n = nums.size();
 
-        sort(nums.begin(), nums.end()); // O(nlogn)
+    sort(nums.begin(), nums.end()); // O(nlogn)
 
-        for (int i=0; i<n; i++) {
-            if (i>0 && nums[i] == nums[i-1]) continue;
+    for (int i=0; i<n; i++) {
+        if (i>0 && nums[i] == nums[i-1]) continue;
 
-            for (int j=i+1; j<n;) {
-                int p = j+1, q = n-1;
+        for (int j=i+1; j<n;) {
+            int p = j+1, q = n-1;
 
-                while (p < q) {
-                    long long sum = (long long)nums[i] + (long long)nums[j]
-                                     + (long long)nums[p] + (long long)nums[q];
+            while (p < q) {
+                long long sum = (long long)nums[i] + (long long)nums[j]
+                                    + (long long)nums[p] + (long long)nums[q];
 
-                    if (sum < target) {
-                        p++;
-                    } else if (sum > target) {
-                        q--;
-                    } else {
-                        result.push_back({nums[i], nums[j], nums[p], nums[q]});
-                        p++, q--;
-                        
-                        while (p < q && nums[p] == nums[p-1]) p++;
-                    }
+                if (sum < target) {
+                    p++;
+                } else if (sum > target) {
+                    q--;
+                } else {
+                    result.push_back({nums[i], nums[j], nums[p], nums[q]});
+                    p++, q--;
+                    
+                    while (p < q && nums[p] == nums[p-1]) p++;
                 }
-                
-                j++;
-                while (j < n && nums[j] == nums[j-1]) j++;
             }
+            
+            j++;
+            while (j < n && nums[j] == nums[j-1]) j++;
         }
-
-        return result;
     }
+
+    return result;
+}
 
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
