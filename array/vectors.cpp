@@ -489,6 +489,51 @@ vector<vector<int>> threeSum(vector<int>& nums) {
     return result;
 }
 
+int subarraySum(vector<int>& nums, int k) {
+    // BRUTE-FORCE APPROACH - TC O(n^2), SC = O(1) 
+    // Find sum of all subarrays, and count those where sum is equals to k
+    // int n = nums.size();
+    // int count = 0;
+
+    // for (int i=0; i<n; i++) {
+    //     int sum = 0;
+    //     for (int j=i; j<n; j++) {
+    //         sum += nums[j];
+    //         if (sum == k) count++;
+    //     }
+    // }
+
+    // return count;
+
+    // OPIMAL APPROACH - TC O(n), SC = O(n) 
+    // Using prefix sum approach
+    int n = nums.size();
+    int count = 0;
+    vector<int> prefixSum(n, -1);
+
+    prefixSum[0] = nums[0];
+    for (int i=1; i<n; i++) {
+        prefixSum[i] = prefixSum[i-1] + nums[i];
+    }
+
+    unordered_map<int, int> um; // prefixSum, frequency
+    for (int j=0; j<n; j++) {
+        if (prefixSum[j] == k) count++;
+
+        int val = prefixSum[j] - k;
+        if (um.find(val) != um.end()) {
+            count += um[val];
+        }
+
+        if (um.find(prefixSum[j]) == um.end()) {
+            um[prefixSum[j]] = 0;
+        }
+        um[prefixSum[j]]++;
+    } 
+
+    return count;
+}
+
 int main() {
     // vector<int> nums = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
@@ -538,10 +583,14 @@ int main() {
     // vector<vector<int>> threeSumAns = threeSum(nums);
     // print2DVector(threeSumAns);
 
-    vector<int> nums = {-2, -1, -2, 1, 1, 2, 2};
+    // vector<int> nums = {-2, -1, -2, 1, 1, 2, 2};
+    // printVector(nums);
+    // vector<vector<int>> fourSumAns = fourSum(nums, 0);
+    // print2DVector(fourSumAns);
+
+    vector<int> nums = {1, 2, 3};
     printVector(nums);
-    vector<vector<int>> fourSumAns = fourSum(nums, 0);
-    print2DVector(fourSumAns);
+    cout << subarraySum(nums, 3) << endl;
     
     return 0;
 }
